@@ -6,7 +6,7 @@
 /*   By: cgodecke <cgodecke@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 15:59:09 by cgodecke          #+#    #+#             */
-/*   Updated: 2023/11/21 16:16:41 by cgodecke         ###   ########.fr       */
+/*   Updated: 2023/11/21 16:30:37 by cgodecke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 int main(void)
 {
+
 	Data *data = new Data;
 	data->name = "Peter";
 	data->age = 42;
