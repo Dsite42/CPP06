@@ -8,7 +8,6 @@
 
 #include "ScalarConverter.hpp"
 
-
 // Constructors
 ScalarConverter::ScalarConverter()
 {}
@@ -33,8 +32,19 @@ void ScalarConverter::outputAsAll(double value, bool isFloatingPoint, int precis
     {
         std::cout << "char: impossible\n";
         std::cout << "int: impossible\n";
-        std::cout << "float: " << (std::isnan(value) ? "nanf" : (value > 0 ? "+inff" : "-inff")) << "\n";
-        std::cout << "double: " << (std::isnan(value) ? "nan" : (value > 0 ? "+inf" : "-inf")) << "\n";
+        if (std::isnan(value))
+            std::cout << "float: nanf\n";
+        else if (value > 0)
+            std::cout << "float: +inff\n";
+        else
+            std::cout << "float: -inff\n";
+            
+        if (std::isnan(value))
+            std::cout << "double: nan\n";
+        else if (value > 0)
+            std::cout << "double: +inf\n";
+        else
+            std::cout << "double: -inf\n";
         return;
     }
 
