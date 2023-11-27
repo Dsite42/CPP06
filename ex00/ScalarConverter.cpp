@@ -1,10 +1,14 @@
-#include <iostream>
-#include <string>
-#include <cctype>
-#include <cstdlib>
-#include <limits>
-#include <cmath>
-#include <iomanip>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ScalarConverter.cpp                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cgodecke <cgodecke@student.42wolfsburg.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/27 17:21:24 by cgodecke          #+#    #+#             */
+/*   Updated: 2023/11/27 17:21:26 by cgodecke         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 

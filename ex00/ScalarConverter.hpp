@@ -6,7 +6,7 @@
 /*   By: cgodecke <cgodecke@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 16:08:54 by cgodecke          #+#    #+#             */
-/*   Updated: 2023/11/27 16:33:53 by cgodecke         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:21:37 by cgodecke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@
 #include <string>
 #include <iostream>
 #include <cctype>
+#include <cctype>
+#include <cstdlib>
+#include <limits>
+#include <cmath>
+#include <iomanip>
+
 
 class ScalarConverter
 {

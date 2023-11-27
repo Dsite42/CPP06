@@ -6,7 +6,7 @@
 /*   By: cgodecke <cgodecke@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:00:33 by cgodecke          #+#    #+#             */
-/*   Updated: 2023/11/21 16:16:47 by cgodecke         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:28:28 by cgodecke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SERIALIZER_HPP
 # include <stdint.h>
 # include "Data.hpp"
+# include <iostream>
 
 class Serializer
 {

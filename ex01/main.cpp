@@ -6,13 +6,11 @@
 /*   By: cgodecke <cgodecke@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 15:59:09 by cgodecke          #+#    #+#             */
-/*   Updated: 2023/11/21 16:30:37 by cgodecke         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:24:38 by cgodecke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Serializer.hpp"
-#include <iostream>
-
 
 int main(void)
 {
