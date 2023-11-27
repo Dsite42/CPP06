@@ -1,125 +1,99 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ScalarConverter.cpp                                :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: cgodecke <cgodecke@student.42wolfsburg.    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/14 16:09:00 by cgodecke          #+#    #+#             */
-/*   Updated: 2023/11/17 14:55:15 by cgodecke         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include <iostream>
+#include <string>
+#include <cctype>
+#include <cstdlib>
+#include <limits>
+#include <cmath>
+#include <iomanip>
 
 #include "ScalarConverter.hpp"
-bool isAllDigit(std::string literal)
+
+
+// Constructors
+ScalarConverter::ScalarConverter()
+{}
+
+ScalarConverter::ScalarConverter(const ScalarConverter &other)
 {
-	bool is_point = false;
-
-	for (size_t i = 0; i < literal.length(); ++i)
-	{
-		if (!isdigit(static_cast<unsigned char>(literal[i])))
-		{
-			if (i == 0 && (static_cast<unsigned char>(literal[i]) == '-' || static_cast<unsigned char>(literal[i]) == '+'))
-				continue;
-			else if (literal[i] == '.' && is_point == false)
-			{
-				is_point = true;
-				continue;
-			}
-			else
-				return (false);
-		}
-	}
-
-	return (true);
+    (void) other;
 }
 
-bool isFloat(std::string literal)
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other)
 {
-	bool is_point = false;
-
-	if (literal[literal.length() - 1] != 'f')
-		return (false);
-
-	for (size_t i = 0; i < literal.length() - 1; ++i)
-	{
-		if (!isdigit(static_cast<unsigned char>(literal[i])))
-		{
-			if (i == 0 && (static_cast<unsigned char>(literal[i]) == '-' || static_cast<unsigned char>(literal[i]) == '+'))
-				continue;
-			else if (i != 0 && literal[i] == '.' && is_point == false && literal[i + 1] != 'f')
-			{
-				is_point = true;
-				continue;
-			}
-			else
-				return (false);
-		}
-	}
-
-	return (true);
+    (void) other;
+    return (*this);
 }
 
-int checkType(std::string literal)
-{
-	if (literal.length() == 1 && !isdigit(literal[0]))
-	{
-		if (isprint(literal[0]))
-			return (0);
-		else
-			std::cout << "Non displayable";
-	}
-	else if (literal.length() == 1 && isdigit(literal[0]))
-	{
-		return (1);
-	}
+ScalarConverter::~ScalarConverter()
+{}
 
-	else if (isFloat(literal))
-	{
-		return (2);
-	}
-	else if (isAllDigit(literal))
-		return (3);
+void ScalarConverter::outputAsAll(double value, bool isFloatingPoint, int precision) {
+    // Special handling for NaN and infinities
+    if (std::isnan(value) || std::isinf(value))
+    {
+        std::cout << "char: impossible\n";
+        std::cout << "int: impossible\n";
+        std::cout << "float: " << (std::isnan(value) ? "nanf" : (value > 0 ? "+inff" : "-inff")) << "\n";
+        std::cout << "double: " << (std::isnan(value) ? "nan" : (value > 0 ? "+inf" : "-inf")) << "\n";
+        return;
+    }
 
-	return (10);
+    // char conversion
+    if (std::isprint(static_cast<int>(value)) && value >= std::numeric_limits<char>::min() && value <= std::numeric_limits<char>::max())
+    {
+        std::cout << "char: '" << static_cast<char>(value) << "'\n";
+    }
+    else
+    {
+        std::cout << "char: Non displayable or impossible\n";
+    }
+
+    // int, float, double conversion
+    std::cout << "int: " << static_cast<int>(value) << "\n";
+
+    // float and double conversion with dynamic precision
+    if (isFloatingPoint)
+        std::cout << std::fixed << std::setprecision(precision);
+    else
+        std::cout << std::fixed << std::setprecision(1);
+    std::cout << "float: " << static_cast<float>(value) << "f\n";
+    std::cout << "double: " << value << "\n";
 }
 
-void printAll(double &literal_to_cast)
+
+// Member functions
+void ScalarConverter::convert(const std::string& literal)
 {
-	std::cout << "char: '" << static_cast<char>(literal_to_cast) << "'" << std::endl;
-	std::cout << "int: " << static_cast<int>(literal_to_cast) << std::endl;
-	std::cout << "float: " << static_cast<float>(literal_to_cast) << "f" << std::endl;
-	std::cout << "double: " << static_cast<double>(literal_to_cast) << std::endl;
+    int precision = 0;
+    char single_char = 0;
+    try
+    {
+        // Handle single character
+        if (literal.length() == 1 && !std::isdigit(literal[0])) {
+            single_char = literal[0];
+            outputAsAll(static_cast<int>(single_char), false, 0);
+        }
+        else
+        {
+            // Convert and print for other cases
+            // set precision for float and double
+            double doubleValue = std::stod(literal);
+            std::size_t decimalPos = literal.find('.');
+            if (decimalPos == std::string::npos)
+                precision = 0;
+            else if (literal[literal.length() - 1] == 'f')
+                precision = literal.length() - decimalPos - 2;
+            else
+                precision = literal.length() - decimalPos - 1;
+            outputAsAll(doubleValue, decimalPos != std::string::npos, precision);
+        }
+    }
+    catch (const std::exception&)
+    {
+        std::cout << "char: impossible\n";
+        std::cout << "int: impossible\n";
+        std::cout << "float: impossible\n";
+        std::cout << "double: impossible\n";
+    }
 }
 
-void ScalarConverter::convert(std::string literal)
-{
-	double literal_to_cast;
-	(void) literal;
-
-	switch (checkType(literal))
-	{
-	case 0:
-		literal_to_cast = static_cast<double>(literal[0]);
-		//std::cout << "char: '" << static_cast<char>(literal_to_cast) << "'" << std::endl;
-		break;
-	case 1:
-		literal_to_cast = static_cast<double>(std::stoi(literal));
-		//std::cout << "int: " << static_cast<int>(literal_to_cast) << std::endl;
-		break;
-	case 2:
-		literal_to_cast = static_cast<double>(std::stof(literal));
-		//std::cout << "float: " << static_cast<float>(literal_to_cast) << "f" << std::endl;
-		break;
-	case 3:
-		literal_to_cast = static_cast<double>(std::stod(literal));
-		//std::cout << "double: " << static_cast<double>(literal_to_cast) << std::endl;
-
-	default:
-		std::cout << "nix dabei\n"; 
-		return;
-	}
-
-	printAll(literal_to_cast);
-
-}
