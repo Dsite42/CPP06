@@ -6,7 +6,7 @@
 /*   By: cgodecke <cgodecke@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:21:24 by cgodecke          #+#    #+#             */
-/*   Updated: 2023/11/27 17:21:26 by cgodecke         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:35:55 by cgodecke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void ScalarConverter::outputAsAll(double value, bool isFloatingPoint, int precis
     }
     else
     {
-        std::cout << "char: Non displayable or impossible\n";
+        std::cout << "char: Non displayable\n";
     }
 
     // int, float, double conversion
