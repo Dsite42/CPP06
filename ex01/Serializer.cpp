@@ -6,7 +6,7 @@
 /*   By: cgodecke <cgodecke@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:00:24 by cgodecke          #+#    #+#             */
-/*   Updated: 2023/11/21 16:07:17 by cgodecke         ###   ########.fr       */
+/*   Updated: 2023/11/27 16:37:50 by cgodecke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ Serializer &Serializer::operator=(Serializer const &other)
 {
 	if (this != &other)
 	{
+		*this = other;
 	}
 	return (*this);
 }

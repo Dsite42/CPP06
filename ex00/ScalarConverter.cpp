@@ -38,7 +38,7 @@ void ScalarConverter::outputAsAll(double value, bool isFloatingPoint, int precis
             std::cout << "float: +inff\n";
         else
             std::cout << "float: -inff\n";
-            
+
         if (std::isnan(value))
             std::cout << "double: nan\n";
         else if (value > 0)
@@ -106,4 +106,3 @@ void ScalarConverter::convert(const std::string& literal)
         std::cout << "double: impossible\n";
     }
 }
-

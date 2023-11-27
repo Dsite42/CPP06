@@ -6,7 +6,7 @@
 /*   By: cgodecke <cgodecke@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 16:08:54 by cgodecke          #+#    #+#             */
-/*   Updated: 2023/11/27 14:29:15 by cgodecke         ###   ########.fr       */
+/*   Updated: 2023/11/27 16:33:53 by cgodecke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ class ScalarConverter
 {
 	private:
 		static void outputAsAll(double value, bool isFloatingPoint, int precision);
+
 	public:
 		// Constructors
 		ScalarConverter();
