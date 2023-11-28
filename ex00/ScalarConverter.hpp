@@ -6,7 +6,7 @@
 /*   By: cgodecke <cgodecke@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 16:08:54 by cgodecke          #+#    #+#             */
-/*   Updated: 2023/11/27 17:21:37 by cgodecke         ###   ########.fr       */
+/*   Updated: 2023/11/28 11:09:30 by cgodecke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,14 @@
 class ScalarConverter
 {
 	private:
-		static void outputAsAll(double value, bool isFloatingPoint, int precision);
-
-	public:
 		// Constructors
 		ScalarConverter();
 		ScalarConverter(const ScalarConverter &other);
 		ScalarConverter &operator=(const ScalarConverter &other);
 		~ScalarConverter();
+		static void outputAsAll(double value, bool isFloatingPoint, int precision);
 
+	public:
 		// Member function
 		static void convert(const std::string& literal);
 };
