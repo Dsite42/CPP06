@@ -6,107 +6,47 @@
 /*   By: cgodecke <cgodecke@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:21:24 by cgodecke          #+#    #+#             */
-/*   Updated: 2023/11/27 17:35:55 by cgodecke         ###   ########.fr       */
+/*   Updated: 2023/12/04 13:09:29 by cgodecke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
-// Constructors
-ScalarConverter::ScalarConverter()
-{}
+ScalarConverter::ScalarConverter(void) { }
 
-ScalarConverter::ScalarConverter(const ScalarConverter &other)
+ScalarConverter::ScalarConverter(ScalarConverter const &src) { *this = src; }
+
+ScalarConverter::~ScalarConverter(void) { }
+
+ScalarConverter	&ScalarConverter::operator=(ScalarConverter const &rhs)
 {
-    (void) other;
+	(void)rhs;
+	return *this;
 }
 
-ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other)
+void    ScalarConverter::convert(const std::string& str)
 {
-    (void) other;
-    return (*this);
-}
-
-ScalarConverter::~ScalarConverter()
-{}
-
-void ScalarConverter::outputAsAll(double value, bool isFloatingPoint, int precision) {
-    // Special handling for NaN and infinities
-    if (std::isnan(value) || std::isinf(value))
+    size_t  len = str.length();
+    e_type  type = whichType(str, len);
+    switch(type)
     {
-        std::cout << "char: impossible\n";
-        std::cout << "int: impossible\n";
-        if (std::isnan(value))
-            std::cout << "float: nanf\n";
-        else if (value > 0)
-            std::cout << "float: +inff\n";
-        else
-            std::cout << "float: -inff\n";
-
-        if (std::isnan(value))
-            std::cout << "double: nan\n";
-        else if (value > 0)
-            std::cout << "double: +inf\n";
-        else
-            std::cout << "double: -inf\n";
-        return;
-    }
-
-    // char conversion
-    if (std::isprint(static_cast<int>(value)) && value >= std::numeric_limits<char>::min() && value <= std::numeric_limits<char>::max())
-    {
-        std::cout << "char: '" << static_cast<char>(value) << "'\n";
-    }
-    else
-    {
-        std::cout << "char: Non displayable\n";
-    }
-
-    // int, float, double conversion
-    std::cout << "int: " << static_cast<int>(value) << "\n";
-
-    // float and double conversion with dynamic precision
-    if (isFloatingPoint)
-        std::cout << std::fixed << std::setprecision(precision);
-    else
-        std::cout << std::fixed << std::setprecision(1);
-    std::cout << "float: " << static_cast<float>(value) << "f\n";
-    std::cout << "double: " << value << "\n";
-}
-
-
-// Member functions
-void ScalarConverter::convert(const std::string& literal)
-{
-    int precision = 0;
-    char single_char = 0;
-    try
-    {
-        // Handle single character
-        if (literal.length() == 1 && !std::isdigit(literal[0])) {
-            single_char = literal[0];
-            outputAsAll(static_cast<int>(single_char), false, 0);
-        }
-        else
-        {
-            // Convert and print for other cases
-            // set precision for float and double
-            double doubleValue = std::stod(literal);
-            std::size_t decimalPos = literal.find('.');
-            if (decimalPos == std::string::npos)
-                precision = 0;
-            else if (literal[literal.length() - 1] == 'f')
-                precision = literal.length() - decimalPos - 2;
-            else
-                precision = literal.length() - decimalPos - 1;
-            outputAsAll(doubleValue, decimalPos != std::string::npos, precision);
-        }
-    }
-    catch (const std::exception&)
-    {
-        std::cout << "char: impossible\n";
-        std::cout << "int: impossible\n";
-        std::cout << "float: impossible\n";
-        std::cout << "double: impossible\n";
+        case INVALID:
+            std::cout << "Invalid input" << std::endl;
+            break;
+        case SPECIAL:
+            printSpecial(str);
+            break;
+        case CHAR:
+            convertChar(str, len);
+            break;
+        case INT:
+            convertInt(str);
+            break;
+        case FLOAT:
+            convertFloat(str);
+            break;
+        case DOUBLE:
+            convertDouble(str);
+            break;
     }
 }
