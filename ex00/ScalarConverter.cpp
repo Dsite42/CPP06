@@ -6,17 +6,22 @@
 /*   By: cgodecke <cgodecke@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:21:24 by cgodecke          #+#    #+#             */
-/*   Updated: 2023/12/04 13:09:29 by cgodecke         ###   ########.fr       */
+/*   Updated: 2023/12/05 10:38:38 by cgodecke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
-ScalarConverter::ScalarConverter(void) { }
+ScalarConverter::ScalarConverter(void)
+{ }
 
-ScalarConverter::ScalarConverter(ScalarConverter const &src) { *this = src; }
+ScalarConverter::ScalarConverter(ScalarConverter const &src)
+{
+    *this = src;
+}
 
-ScalarConverter::~ScalarConverter(void) { }
+ScalarConverter::~ScalarConverter(void)
+{ }
 
 ScalarConverter	&ScalarConverter::operator=(ScalarConverter const &rhs)
 {

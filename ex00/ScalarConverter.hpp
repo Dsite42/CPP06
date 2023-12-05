@@ -6,7 +6,7 @@
 /*   By: cgodecke <cgodecke@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 16:08:54 by cgodecke          #+#    #+#             */
-/*   Updated: 2023/12/05 10:25:27 by cgodecke         ###   ########.fr       */
+/*   Updated: 2023/12/05 10:28:31 by cgodecke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,11 @@ enum    e_type
 class	ScalarConverter
 {
 	private:
-
 		ScalarConverter(void);
 		ScalarConverter(ScalarConverter const &src);
-		
 		~ScalarConverter(void);
-
 		ScalarConverter	&operator=(ScalarConverter const &rhs);
-
 	public:
-
 		static void	convert(const std::string& str);
 };
 
