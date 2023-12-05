@@ -6,7 +6,7 @@
 /*   By: cgodecke <cgodecke@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 16:08:54 by cgodecke          #+#    #+#             */
-/*   Updated: 2023/12/04 15:55:11 by cgodecke         ###   ########.fr       */
+/*   Updated: 2023/12/05 10:25:27 by cgodecke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@
 # include <limits>
 # include <cmath>
 
-# define MIN_INT -2147483648
-# define MAX_INT 2147483647
-# define MIN_FLOAT -3.40282e+38
-# define MAX_FLOAT 3.40282e+38
-# define MIN_DOUBLE -1.79769e+308
-# define MAX_DOUBLE 1.79769e+308
+# define MIN_INT std::numeric_limits<int>::min() //-2147483648
+# define MAX_INT std::numeric_limits<int>::max() //2147483647
+# define MIN_FLOAT std::numeric_limits<float>::min() //-3.40282e+38
+# define MAX_FLOAT std::numeric_limits<float>::max() //3.40282e+38
+# define MIN_DOUBLE std::numeric_limits<double>::min() //-1.79769e+308
+# define MAX_DOUBLE std::numeric_limits<double>::max() //1.79769e+308
 
 enum    e_type
 {
